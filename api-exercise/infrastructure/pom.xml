@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>api-exercise</artifactId>
+        <groupId>com.gym_app</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>infrastructure</artifactId>
+
+    <properties>
+        <h2.version>1.4.200</h2.version>
+        <jakarta.xml.bind.version>3.0.1</jakarta.xml.bind.version>
+        <jaxb.runtime.version>3.0.1</jaxb.runtime.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gym_app</groupId>
+            <artifactId>domain</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${javax.inject.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>
