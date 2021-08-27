@@ -34,6 +34,12 @@ public class MuscleEntity {
                 .builder()
                 .id(muscle.getId())
                 .name(muscle.getName())
+                .createdDate(muscle.getCreatedDate())
+                .createdBy(muscle.getCreatedBy())
+                .lastModifiedDate(muscle.getLastModifiedDate())
+                .lastModifiedBy(muscle.getLastModifiedBy())
+                .disabledDate(muscle.getDisabledDate())
+                .disabledBy(muscle.getDisabledBy())
                 .build();
     }
 
@@ -42,6 +48,12 @@ public class MuscleEntity {
                 .builder()
                 .id(this.id)
                 .name(this.name)
+                .createdDate(this.createdDate)
+                .createdBy(this.createdBy)
+                .lastModifiedDate(this.lastModifiedDate)
+                .lastModifiedBy(this.lastModifiedBy)
+                .disabledDate(this.disabledDate)
+                .disabledBy(this.disabledBy)
                 .build();
     }
 }
