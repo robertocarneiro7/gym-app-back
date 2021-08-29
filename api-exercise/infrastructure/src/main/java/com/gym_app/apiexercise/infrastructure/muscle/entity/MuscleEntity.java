@@ -4,9 +4,7 @@ import com.gym_app.apiexercise.domain.muscle.Muscle;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -22,9 +20,11 @@ public class MuscleEntity {
     private String name;
     @CreatedDate
     private LocalDateTime createdDate;
+    @CreatedBy
     private String createdBy;
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
+    @LastModifiedBy
     private String lastModifiedBy;
     private LocalDateTime disabledDate;
     private String disabledBy;

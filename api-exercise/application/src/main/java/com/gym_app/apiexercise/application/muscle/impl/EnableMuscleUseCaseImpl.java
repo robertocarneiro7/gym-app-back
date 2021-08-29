@@ -28,7 +28,9 @@ public class EnableMuscleUseCaseImpl implements EnableMuscleUseCase {
             throw new BusinessException("Músculo já habilitado");
         }
 
-        Muscle muscleToSave = muscleOnDB.toBuilder().disabledDate(null).build();
-        return MuscleResponse.from(muscleRepository.update(muscleToSave));
+        return muscleRepository
+                .enable(id)
+                .map(MuscleResponse::from)
+                .orElse(null);
     }
 }

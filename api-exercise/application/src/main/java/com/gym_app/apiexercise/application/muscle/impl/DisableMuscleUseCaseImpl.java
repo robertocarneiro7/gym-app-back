@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import java.time.LocalDateTime;
-
 import static java.util.Objects.nonNull;
 
 @Named
@@ -30,7 +28,9 @@ public class DisableMuscleUseCaseImpl implements DisableMuscleUseCase {
             throw new BusinessException("Músculo já desabilitado");
         }
 
-        Muscle muscleToSave = muscleOnDB.toBuilder().disabledDate(LocalDateTime.now()).build();
-        return MuscleResponse.from(muscleRepository.update(muscleToSave));
+        return muscleRepository
+                .disable(id)
+                .map(MuscleResponse::from)
+                .orElse(null);
     }
 }

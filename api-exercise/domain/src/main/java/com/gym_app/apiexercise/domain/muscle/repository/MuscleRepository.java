@@ -16,5 +16,9 @@ public interface MuscleRepository {
 
     Muscle update(Muscle muscle);
 
+    Optional<Muscle> enable(String id);
+
+    Optional<Muscle> disable(String id);
+
     Optional<Muscle> findByName(String name);
 }

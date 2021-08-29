@@ -13,12 +13,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.apache.logging.log4j.util.Strings.isEmpty;
 
@@ -70,6 +73,26 @@ public class MuscleRepositoryImpl implements MuscleRepository {
     @Override
     public Muscle update(Muscle muscle) {
         return muscleDAO.save(MuscleEntity.from(muscle)).toDomain();
+    }
+
+    @Override
+    public Optional<Muscle> enable(String id) {
+        Query queryById = Query.query(Criteria.where("id").is(id));
+        Update updateById = Update
+                .update("disabledDate", null)
+                .set("disabledBy", null);
+        mongoTemplate.updateFirst(queryById, updateById, MuscleEntity.class);
+        return findById(id);
+    }
+
+    @Override
+    public Optional<Muscle> disable(String id) {
+        Query queryById = Query.query(Criteria.where("id").is(id));
+        Update updateById = Update
+                .update("disabledDate", LocalDateTime.now())
+                .set("disabledBy", UUID.randomUUID().toString());
+        mongoTemplate.updateFirst(queryById, updateById, MuscleEntity.class);
+        return findById(id);
     }
 
     @Override
